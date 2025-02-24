@@ -18,7 +18,7 @@ program
         // Clone the template
         try {
             execSync(
-                `git clone https://github.com/yourusername/my-next-template.git ${projectName}`,
+                `git clone https://github.com/Eysteix/my-next-template.git ${projectName}`,
                 { stdio: "inherit" }
             );
 
@@ -36,15 +36,19 @@ program
             // Ask user for environment variables
             const answers = await inquirer.prompt([
                 { name: "databaseURL", message: "Enter your DATABASE_URL:" },
-                { name: "authSecret", message: "Enter your NEXTAUTH_SECRET:" },
+                { name: "authSecret", message: "Enter your AUTH_SECRET:" },
+                {name:"githubClient",message:"Enter Your Github Client ID"}
             ]);
 
             // Create .env file
+            const envLocal = `AUTH_SECRET=${answers.authSecret} GITHUB_CLIENT_ID=${answers.githubClient}`
             const envContent = `DATABASE_URL=${answers.databaseURL}
-NEXTAUTH_SECRET=${answers.authSecret}
+
 `;
             fs.writeFileSync(".env", envContent);
             console.log(chalk.green("✅ .env file created!"));
+            fs.writeFileSync(".env.local", envLocal);
+            console.log(chalk.green("✅ .env.local file created!"));
 
             // Run Prisma migrations
             console.log(chalk.blue("🔄 Running Prisma migrations..."));
