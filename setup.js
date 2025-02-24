@@ -35,14 +35,14 @@ program
 
             // Ask user for environment variables
             const answers = await inquirer.prompt([
-                { name: "databaseURL", message: "Enter your DATABASE_URL:" },
+                { name: "databaseURL", message: "Enter your DATABASE_Name:" },
                 { name: "authSecret", message: "Enter your AUTH_SECRET:" },
                 {name:"githubClient",message:"Enter Your Github Client ID"}
             ]);
 
             // Create .env file
             const envLocal = `AUTH_SECRET=${answers.authSecret} GITHUB_CLIENT_ID=${answers.githubClient}`
-            const envContent = `DATABASE_URL=${answers.databaseURL}
+            const envContent = `DATABASE_URL=postgresql://marvel:marvel0607@localhost:5432/${answers.databaseURL}?schema=public
 
 `;
             fs.writeFileSync(".env", envContent);
