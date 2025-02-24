@@ -29,7 +29,7 @@ program
 
             // Install dependencies
             console.log(chalk.blue("📦 Installing dependencies..."));
-            execSync("npm install", { stdio: "inherit" });
+            execSync("npm install --force", { stdio: "inherit" });
 
             console.log(chalk.green("✅ Dependencies installed!"));
 
