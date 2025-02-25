@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation"
 export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
   const route = usePathname();
   const authRoute = [
-    '/signin', 
+    '/login',
     '/dashboard'
   ].some(path => route.startsWith(path))
 
