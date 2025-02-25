@@ -4,6 +4,7 @@ import { useState } from "react"
 import { signIn } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import { z } from "zod"
+import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "@/components/ui/button"
@@ -64,8 +65,11 @@ export function LoginForm({
             <form onSubmit={form.handleSubmit(onSubmit)}>
                 <Form {...form}>
                     <h1 className='text-center font-bold text-xl w-full mb-4'>
-                        WELCOME BACK
+                        WELCOME
                     </h1>
+                     <h6   className='text-center w-full mx-auto my-0 text-sm' >
+                         Don&#39;t Have An Account ? <Link href="/register" className={"text-primary"}>Create One</Link>
+                     </h6>
                     {error && <div className="text-red-500 text-sm text-center p-2 rounded-sm border-red-400 border bg-slate-800 bg-opacity-20">{error}</div>}
                     <FormField
                         control={form.control}
